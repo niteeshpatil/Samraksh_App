@@ -34,9 +34,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 248, 199, 199),
       appBar: AppBar(
         title: const Text('Samraksh'),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(238, 241, 13, 13)),
+                    color: Color.fromARGB(255, 0, 0, 0)),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 0.0),
@@ -86,17 +88,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     print('Room_No: $enteredPatientNo');
                     print('Selected_Mode: $selectedMode');
                     print('Selected_limit: $selectedLimit');
-                    P_Name = enteredPatientName;
-                    P_Room = enteredPatientNo;
+                    p_name = enteredPatientName;
+                    p_room = enteredPatientNo;
                     if (selectedMode != null) {
-                      P_Limit = selectedMode;
+                      p_limit = selectedMode;
                     } else {
-                      P_Limit = selectedLimit!;
+                      p_limit = selectedLimit!;
                     }
                     Map<String, dynamic> jsonMessage = {
-                      'Name': P_Name,
-                      'Room': P_Room,
-                      'limit': P_Limit,
+                      'Name': p_name,
+                      'Room': p_room,
+                      'limit': p_limit,
                     };
 
                     String jsonString = json.encode(jsonMessage);
@@ -111,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   style: ElevatedButton.styleFrom(
                     // ignore: deprecated_member_use
-                    primary: Colors.green,
+                    primary: Colors.black,
                     textStyle: const TextStyle(fontSize: 15),
                     fixedSize:
                         const Size(120, 40), // set the button width and height

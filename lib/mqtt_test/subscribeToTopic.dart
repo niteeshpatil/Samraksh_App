@@ -1,5 +1,6 @@
 // ignore: file_names
 import '../data.dart';
+import 'dart:convert';
 import 'package:mqtt_client/mqtt_client.dart'
     show
         MqttMessage,
@@ -8,6 +9,7 @@ import 'package:mqtt_client/mqtt_client.dart'
         MqttQos,
         MqttReceivedMessage;
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:intl/intl.dart';
 
 void subscribeToTopic(MqttServerClient client, String topic) {
   print('Subscribing to the $topic topic');
@@ -18,6 +20,13 @@ void subscribeToTopic(MqttServerClient client, String topic) {
     final pt =
         MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
     print('Received message: topic is ${c[0].topic}, payload is $pt');
-    patentmessage =pt;
+    String data = pt;
+    try {
+      isset = int.parse(data[0]);
+      p_state = int.parse(data[1]);
+    } catch (e) {
+      print("Error occurred while parsing the data: $e");
+    }
+    last_update = DateFormat(' hh:mm:ss a dd/MM/yy').format(DateTime.now());
   });
 }

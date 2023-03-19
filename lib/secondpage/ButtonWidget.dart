@@ -15,21 +15,18 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: connected
-          ? ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-              ),
-              onPressed: onDisconnectPressed,
-              child: const Text('Disconnect'),
-            )
-          : ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-              ),
-              onPressed: onConnectPressed,
-              child: const Text('Connect'),
-            ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.black,
+          textStyle: const TextStyle(fontSize: 15),
+          fixedSize: const Size(120, 40),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        onPressed: connected ? onDisconnectPressed : onConnectPressed,
+        child: Text(connected ? 'Disconnect' : 'Connect'),
+      ),
     );
   }
 }
