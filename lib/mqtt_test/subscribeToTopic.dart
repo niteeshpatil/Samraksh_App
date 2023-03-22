@@ -1,6 +1,5 @@
 // ignore: file_names
 import '../data.dart';
-import 'dart:convert';
 import 'package:mqtt_client/mqtt_client.dart'
     show
         MqttMessage,
@@ -11,11 +10,11 @@ import 'package:mqtt_client/mqtt_client.dart'
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:intl/intl.dart';
 
-void subscribeToTopic(MqttServerClient client, String topic) {
+Future<void> subscribeToTopic(MqttServerClient client, String topic) async {
   print('Subscribing to the $topic topic');
-  client.subscribe(topic, MqttQos.atMostOnce);
+  await client.subscribe(topic, MqttQos.atMostOnce);
 
-  client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
+  await client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
     final recMess = c![0].payload as MqttPublishMessage;
     final pt =
         MqttPublishPayload.bytesToStringAsString(recMess.payload.message);

@@ -5,6 +5,7 @@ import 'limit_dropdown.dart';
 import 'patient_name.dart';
 import 'dart:convert';
 import '../setupfunctions/publish.dart';
+import '../setupfunctions/subscribe.dart';
 import '../secondpage/seaconmain.dart';
 import '../data.dart';
 
@@ -40,9 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         centerTitle: true,
       ),
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(75.0),
+          padding: const EdgeInsets.all(50.0),
           child: Column(
             mainAxisAlignment:
                 MainAxisAlignment.center, // Center the children vertically
@@ -79,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 20.0),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     String enteredPatientName = Patient_Name.text;
                     String enteredPatientNo = Patient_NO.text;
                     double? selectedMode = Mode;
@@ -103,13 +105,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     String jsonString = json.encode(jsonMessage);
                     print(jsonString);
-                    runpublish(jsonString);
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SecondPage()),
-                    );
+                    await runpublish(jsonString);
+                    await runsubscribe(20);
+                    if (isset == 1) {
+                      // ignore: use_build_context_synchronously
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SecondPage()),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     // ignore: deprecated_member_use

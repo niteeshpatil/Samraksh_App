@@ -3,7 +3,7 @@ import 'package:mqtt_client/mqtt_client.dart'
     show MqttClient, MqttConnectMessage, MqttQos;
 import 'mqtt_callbacks.dart';
 
-void setupClient(MqttClient client) {
+Future<void> setupClient(MqttClient client) async {
   client.logging(on: false);
   // client.keepAlivePeriod = 5;
   // client.onDisconnected = onDisconnected;

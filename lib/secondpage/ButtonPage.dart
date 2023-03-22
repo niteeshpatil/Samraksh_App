@@ -15,7 +15,7 @@ class _ButtonState extends State<Button> {
   void _connect() async {
     connect(setState);
     _connected = true;
-    runsubscribe();
+    runsubscribe(-1);
   }
 
   void _disconnect() async {

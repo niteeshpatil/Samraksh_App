@@ -28,51 +28,53 @@ class LimitDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const Text(
-          'Set limit',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            'Set limit',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          width: 300,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.grey[200],
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: DropdownButton<double>(
-            value: value,
-            onChanged: onChanged,
-            underline: const SizedBox.shrink(),
-            isExpanded: true,
-            items: [
-              const DropdownMenuItem<double>(
-                value: null,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('Set limit'),
-                ),
-              ),
-              for (double i in _items)
-                DropdownMenuItem<double>(
-                  value: i,
+          const SizedBox(height: 8),
+          Container(
+            width: 300,
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.grey[200],
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: DropdownButton<double>(
+              value: value,
+              onChanged: onChanged,
+              underline: const SizedBox.shrink(),
+              isExpanded: true,
+              items: [
+                const DropdownMenuItem<double>(
+                  value: null,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text('$i'),
+                    child: Text('Set limit'),
                   ),
                 ),
-            ],
+                for (double i in _items)
+                  DropdownMenuItem<double>(
+                    value: i,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text('$i'),
+                    ),
+                  ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 20.0),
-      ],
+          const SizedBox(height: 20.0),
+        ],
+      ),
     );
   }
 }
