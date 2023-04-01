@@ -3,6 +3,7 @@ import 'ButtonWidget.dart';
 import 'button_functions.dart';
 import '../setupfunctions/subscribe.dart';
 import '../setupfunctions/disconnect.dart';
+import "../notification/notifi_service.dart";
 
 class Button extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _ButtonState extends State<Button> {
   void _disconnect() async {
     disconnect(setState);
     _connected = false;
-    runisconnect();
+    rundisconnect();
   }
 
   @override

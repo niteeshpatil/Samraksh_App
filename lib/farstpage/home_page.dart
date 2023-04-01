@@ -1,13 +1,15 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'patient_no.dart';
 import 'mode_dropdown.dart';
 import 'limit_dropdown.dart';
 import 'patient_name.dart';
-import 'dart:convert';
 import '../setupfunctions/publish.dart';
 import '../setupfunctions/subscribe.dart';
 import '../secondpage/seaconmain.dart';
 import '../data.dart';
+import '../globledata.dart';
+import '../setupfunctions/disconnect.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -22,20 +24,51 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final Patient_Name = TextEditingController();
   final Patient_NO = TextEditingController();
-
   double? Mode;
   double? dropdownLimitValue;
+  bool isLoading = false;
+  bool _connectionError = false;
+  Timer? _timer;
+
+  void _connect() {
+    setState(() {
+      isLoading = true;
+      _connectionError = false;
+    });
+
+    // Simulate a connection delay
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        isLoading = false;
+        _connectionError = true;
+        _timer = Timer(Duration(seconds: 1), () {
+          setState(() {
+            _connectionError = false;
+          });
+        });
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    loadDataWhenAppStarts();
+    Future.delayed(Duration(seconds: 1), () => loadpage(context));
+    super.initState();
+  }
 
   @override
   void dispose() {
     Patient_NO.dispose();
+    rundisconnect();
+    _timer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 248, 199, 199),
+      backgroundColor: Color.fromARGB(240, 102, 153, 204),
       appBar: AppBar(
         title: const Text('Samraksh'),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
@@ -82,14 +115,18 @@ class _MyHomePageState extends State<MyHomePage> {
               Center(
                 child: ElevatedButton(
                   onPressed: () async {
+                    setState(() {
+                      isLoading = true;
+                    });
                     String enteredPatientName = Patient_Name.text;
                     String enteredPatientNo = Patient_NO.text;
                     double? selectedMode = Mode;
                     double? selectedLimit = dropdownLimitValue;
-                    print('Name: $enteredPatientName');
-                    print('Room_No: $enteredPatientNo');
-                    print('Selected_Mode: $selectedMode');
-                    print('Selected_limit: $selectedLimit');
+                    // print('Name: $enteredPatientName');
+                    // print('Room_No: $enteredPatientNo');
+                    // print('Selected_Mode: $selectedMode');
+                    // print('Selected_limit: $selectedLimit');
+
                     p_name = enteredPatientName;
                     p_room = enteredPatientNo;
                     if (selectedMode != null) {
@@ -97,16 +134,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     } else {
                       p_limit = selectedLimit!;
                     }
-                    Map<String, dynamic> jsonMessage = {
-                      'Name': p_name,
-                      'Room': p_room,
-                      'limit': p_limit,
-                    };
 
-                    String jsonString = json.encode(jsonMessage);
-                    print(jsonString);
-                    await runpublish(jsonString);
-                    await runsubscribe(20);
+                    String msg = p_limit.toString();
+                    print(msg);
+                    await runpublish(msg);
+                    await runsubscribe(3);
+                    rundisconnect();
+
+                    setState(() {
+                      isLoading = false;
+                    });
                     if (isset == 1) {
                       // ignore: use_build_context_synchronously
                       Navigator.push(
@@ -114,6 +151,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         MaterialPageRoute(
                             builder: (context) => const SecondPage()),
                       );
+                    } else {
+                      _connect();
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -127,13 +166,33 @@ class _MyHomePageState extends State<MyHomePage> {
                           10), // set the button border radius
                     ),
                   ),
-                  child: const Text('Submit'),
+                  child: isLoading
+                      // ignore: prefer_const_constructors
+                      ? SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: const CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Text('Submit'),
                 ),
               ),
+              if (isLoading) const Text('Connecting to ESP...'),
+              if (_connectionError) const Text('Make sure ESP is on!'),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+void loadpage(BuildContext context) {
+  if (isset == 1) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SecondPage()),
     );
   }
 }

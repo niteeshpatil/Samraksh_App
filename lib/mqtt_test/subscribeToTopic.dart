@@ -1,5 +1,6 @@
 // ignore: file_names
 import '../data.dart';
+import '../globledata.dart';
 import 'package:mqtt_client/mqtt_client.dart'
     show
         MqttMessage,
@@ -23,6 +24,7 @@ Future<void> subscribeToTopic(MqttServerClient client, String topic) async {
     try {
       isset = int.parse(data[0]);
       p_state = int.parse(data[1]);
+      saveDataBeforeAppClose();
     } catch (e) {
       print("Error occurred while parsing the data: $e");
     }

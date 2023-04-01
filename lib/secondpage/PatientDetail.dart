@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../data.dart';
 
+
 class PatientDetail extends StatefulWidget {
   const PatientDetail({Key? key}) : super(key: key);
 
@@ -82,16 +83,16 @@ class PatientDetailTable extends StatelessWidget {
     return Center(
       child: DataTableTheme(
         data: DataTableThemeData(
-          dataRowColor: MaterialStateProperty.all<Color>(Colors.black),
+          dataRowColor: MaterialStateProperty.all<Color>(Colors.white),
           // ignore: prefer_const_constructors
           dataTextStyle: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 167, 230, 251),
+            color: Colors.black,
             border: Border.all(
               color: Color.fromARGB(255, 1, 0, 0),
               width: 2.0,
@@ -107,7 +108,7 @@ class PatientDetailTable extends StatelessWidget {
                   'Patient Detail',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -117,7 +118,7 @@ class PatientDetailTable extends StatelessWidget {
                   'Value',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -128,7 +129,7 @@ class PatientDetailTable extends StatelessWidget {
                   Text(
                     'Patient Name',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -136,7 +137,7 @@ class PatientDetailTable extends StatelessWidget {
                   Text(
                     name,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -146,7 +147,7 @@ class PatientDetailTable extends StatelessWidget {
                   Text(
                     'Patient Room',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -154,7 +155,7 @@ class PatientDetailTable extends StatelessWidget {
                   Text(
                     room,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -164,7 +165,7 @@ class PatientDetailTable extends StatelessWidget {
                   Text(
                     'Patient Status',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -193,7 +194,7 @@ class PatientDetailTable extends StatelessWidget {
                   Text(
                     'Last Update',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -201,7 +202,7 @@ class PatientDetailTable extends StatelessWidget {
                   Text(
                     astime,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
