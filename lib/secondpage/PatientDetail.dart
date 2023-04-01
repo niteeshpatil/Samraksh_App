@@ -23,7 +23,7 @@ class _PatientDetailState extends State<PatientDetail> {
     super.initState();
 
     // Start the timer to periodically check if last_update or p_state has changed
-    timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+    timer = Timer.periodic(Duration(seconds: 2), (Timer t) {
       if (last_update != astime || p_state != getStatus()) {
         setState(() {
           astime = last_update;

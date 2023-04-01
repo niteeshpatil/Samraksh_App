@@ -17,7 +17,10 @@ Future<void> runsubscribe(int timeout) async {
   if (timeout != -1) {
     print('waiting for ack....');
     await MqttUtilities.asyncSleep(timeout);
-    client.disconnect();
+    print('timeout for ack....');
+  } else {
+    // Sleep for 15 minutes
+    await MqttUtilities.asyncSleep(900);
   }
-  print('timeout for ack....');
+  client.disconnect();
 }
