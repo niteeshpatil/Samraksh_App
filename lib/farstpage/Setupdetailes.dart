@@ -6,26 +6,30 @@ import 'limit_dropdown.dart';
 import 'patient_name.dart';
 import '../setupfunctions/publish.dart';
 import '../setupfunctions/subscribe.dart';
-import '../secondpage/seaconmain.dart';
+import '../secondpage/Patientinfopage.dart';
 import '../data.dart';
 import '../globledata.dart';
 import '../setupfunctions/disconnect.dart';
+import './device.dart';
+import './patientdetbtn.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class Setupdetailes extends StatefulWidget {
+  const Setupdetailes({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _MyHomePageState createState() {
-    return _MyHomePageState();
+  _SetupdetailesState createState() {
+    return _SetupdetailesState();
   }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SetupdetailesState extends State<Setupdetailes> {
   final Patient_Name = TextEditingController();
   final Patient_NO = TextEditingController();
   double? Mode;
   double? dropdownLimitValue;
+  int? device = 1;
+  String msg = "";
   bool isLoading = false;
   bool _connectionError = false;
   Timer? _timer;
@@ -53,7 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     loadDataWhenAppStarts();
-    Future.delayed(Duration(seconds: 1), () => loadpage(context));
     super.initState();
   }
 
@@ -63,6 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
     rundisconnect();
     _timer?.cancel();
     super.dispose();
+  }
+
+  void moveSetup() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Patientinfo()));
   }
 
   @override
@@ -85,6 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
               Name(controller: Patient_Name),
               const SizedBox(height: 20.0),
               PatientNO(controller: Patient_NO),
+              const SizedBox(height: 20.0),
+              DeviceDropdown(
+                  value: device,
+                  onChanged: (int? newValue) {
+                    setState(() {
+                      device = newValue;
+                    });
+                  }),
               const SizedBox(height: 20.0),
               ModeDropdown(
                   value: Mode,
@@ -120,36 +136,50 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
                     String enteredPatientName = Patient_Name.text;
                     String enteredPatientNo = Patient_NO.text;
+                    int? selectedDevice = device;
                     double? selectedMode = Mode;
                     double? selectedLimit = dropdownLimitValue;
                     // print('Name: $enteredPatientName');
                     // print('Room_No: $enteredPatientNo');
+                    // print('Selected_Device: $selectedDevice');
                     // print('Selected_Mode: $selectedMode');
                     // print('Selected_limit: $selectedLimit');
 
-                    p_name = enteredPatientName;
-                    p_room = enteredPatientNo;
-                    if (selectedMode != null) {
-                      p_limit = selectedMode;
+                    if (selectedDevice == 1) {
+                      p_name1 = enteredPatientName;
+                      p_room1 = enteredPatientNo;
+                      if (selectedMode != null) {
+                        p_limit1 = selectedMode;
+                      } else {
+                        p_limit1 = selectedLimit!;
+                      }
+                      msg = "$device $p_limit1";
                     } else {
-                      p_limit = selectedLimit!;
+                      p_name2 = enteredPatientName;
+                      p_room2 = enteredPatientNo;
+                      if (selectedMode != null) {
+                        p_limit2 = selectedMode;
+                      } else {
+                        p_limit2 = selectedLimit!;
+                      }
+                      msg = "$device $p_limit2";
                     }
 
-                    String msg = p_limit.toString();
                     print(msg);
+                    isconnected = false;
                     await runpublish(msg);
-                    await runsubscribe(3);
+                    await runsubscribe(4);
                     rundisconnect();
 
                     setState(() {
                       isLoading = false;
                     });
-                    if (isset == 1) {
+                    if ((device == 1 && device1isset == 1) ||
+                        (device == 2 && device2isset == 1)) {
                       // ignore: use_build_context_synchronously
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const SecondPage()),
+                        MaterialPageRoute(builder: (context) => Patientinfo()),
                       );
                     } else {
                       _connect();
@@ -163,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         const Size(120, 40), // set the button width and height
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
-                          10), // set the button border radius
+                          12), // set the button border radius
                     ),
                   ),
                   child: isLoading
@@ -180,19 +210,12 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               if (isLoading) const Text('Connecting to ESP...'),
               if (_connectionError) const Text('Make sure ESP is on!'),
+              const SizedBox(height: 20.0),
+              Center(child: Pdetailesbtn(onPressed: moveSetup)),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-void loadpage(BuildContext context) {
-  if (isset == 1) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SecondPage()),
     );
   }
 }

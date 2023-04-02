@@ -13,8 +13,6 @@ class Button extends StatefulWidget {
 }
 
 class _ButtonState extends State<Button> {
-  bool _connected = false;
-
   Timer? _timer;
 
   @override
@@ -25,25 +23,29 @@ class _ButtonState extends State<Button> {
 
   void _connect() async {
     connect(setState);
-    _connected = true;
+    isconnected = true;
     runsubscribe(-1);
     // Show a notification when connected
     await showNotification('Connected', 'You are now connected to the ESP32.');
 
-    Timer.periodic(Duration(seconds: 5), (timer) async {
-      if (p_state == 2) {
-        await showNotification('Status', 'patent condition is unstable.');
+    _timer = Timer.periodic(Duration(seconds: 3), (timer) async {
+      if (p_state1 == 2 && isconnected) {
+        await showNotification('Status',
+            'The patient $p_name1 in the $p_room1 room, appears that their body movements are exceeding the set limit.We recommend checking on the patient to ensure their well-being.');
+      }
+      if (p_state2 == 2 && isconnected) {
+        await showNotification('Status',
+            'The patient $p_name2 in the $p_room2 room, appears that their body movements are exceeding the set limit.We recommend checking on the patient to ensure their well-being.');
       }
     });
   }
 
   void _disconnect() async {
     disconnect(setState);
-    _connected = false;
-    rundisconnect();
-
     // Cancel the timer
     _timer?.cancel();
+    isconnected = false;
+    rundisconnect();
 
     // Show a notification when disconnected
     await showNotification(
@@ -53,7 +55,6 @@ class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
     return ButtonWidget(
-      connected: _connected,
       onConnectPressed: _connect,
       onDisconnectPressed: _disconnect,
     );
@@ -61,6 +62,7 @@ class _ButtonState extends State<Button> {
 
   @override
   void dispose() {
+    _disconnect();
     super.dispose();
   }
 }
