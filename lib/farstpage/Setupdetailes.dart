@@ -12,6 +12,7 @@ import '../globledata.dart';
 import '../setupfunctions/disconnect.dart';
 import './device.dart';
 import './patientdetbtn.dart';
+import '../helppage.dart';
 
 class Setupdetailes extends StatefulWidget {
   const Setupdetailes({super.key});
@@ -32,9 +33,10 @@ class _SetupdetailesState extends State<Setupdetailes> {
   String msg = "";
   bool isLoading = false;
   bool _connectionError = false;
+  bool _limitError = false;
   Timer? _timer;
 
-  void _connect() {
+  void _connecterror() {
     setState(() {
       isLoading = true;
       _connectionError = false;
@@ -48,6 +50,26 @@ class _SetupdetailesState extends State<Setupdetailes> {
         _timer = Timer(Duration(seconds: 1), () {
           setState(() {
             _connectionError = false;
+          });
+        });
+      });
+    });
+  }
+
+  void _connectlimit() {
+    setState(() {
+      isLoading = true;
+      _limitError = false;
+    });
+
+    // Simulate a connection delay
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        isLoading = false;
+        _limitError = true;
+        _timer = Timer(Duration(seconds: 1), () {
+          setState(() {
+            _limitError = false;
           });
         });
       });
@@ -79,9 +101,29 @@ class _SetupdetailesState extends State<Setupdetailes> {
       backgroundColor: Color.fromARGB(240, 102, 153, 204),
       appBar: AppBar(
         title: const Text('Samraksh'),
+        toolbarHeight: 35,
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.info),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotesDialog(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
+      // appBar: AppBar(
+      //   title: const Text('Samraksh'),
+      //   toolbarHeight: 35,
+      //   backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      //   centerTitle: true,
+      // ),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
@@ -139,11 +181,18 @@ class _SetupdetailesState extends State<Setupdetailes> {
                     int? selectedDevice = device;
                     double? selectedMode = Mode;
                     double? selectedLimit = dropdownLimitValue;
-                    // print('Name: $enteredPatientName');
-                    // print('Room_No: $enteredPatientNo');
-                    // print('Selected_Device: $selectedDevice');
-                    // print('Selected_Mode: $selectedMode');
-                    // print('Selected_limit: $selectedLimit');
+                    print('Name: $enteredPatientName');
+                    print('Room_No: $enteredPatientNo');
+                    print('Selected_Device: $selectedDevice');
+                    print('Selected_Mode: $selectedMode');
+                    print('Selected_limit: $selectedLimit');
+
+                    if (selectedLimit == null && selectedMode == null) {
+                      setState(() {
+                        _connectlimit();
+                      });
+                      return;
+                    }
 
                     if (selectedDevice == 1) {
                       p_name1 = enteredPatientName;
@@ -182,7 +231,7 @@ class _SetupdetailesState extends State<Setupdetailes> {
                         MaterialPageRoute(builder: (context) => Patientinfo()),
                       );
                     } else {
-                      _connect();
+                      _connecterror();
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -210,6 +259,7 @@ class _SetupdetailesState extends State<Setupdetailes> {
               ),
               if (isLoading) const Text('Connecting to ESP...'),
               if (_connectionError) const Text('Make sure ESP is on!'),
+              if (_limitError) Text("Make sure Limit is selected!"),
               const SizedBox(height: 20.0),
               Center(child: Pdetailesbtn(onPressed: moveSetup)),
             ],

@@ -5,7 +5,6 @@ class Patientinfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Patient info',
       home: Patientdispaly(),
     );
   }
