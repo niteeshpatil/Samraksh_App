@@ -42,7 +42,6 @@ class _PatientdispalyState extends State<Patientdispaly> {
       backgroundColor: const Color.fromARGB(240, 102, 153, 204),
       appBar: AppBar(
         title: const Text('Patient Info'),
-        toolbarHeight: 35,
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         centerTitle: true,
         actions: <Widget>[
@@ -67,7 +66,7 @@ class _PatientdispalyState extends State<Patientdispaly> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ButtonExpand("Device 1", 0, expandedIndex, () {
+                  ButtonExpand("Device-1", 0, expandedIndex, () {
                     setState(() {
                       if (expandedIndex == 0) {
                         expandedIndex = -1;
@@ -85,7 +84,7 @@ class _PatientdispalyState extends State<Patientdispaly> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ButtonExpand("Device 2", 1, expandedIndex, () {
+                  ButtonExpand("Device-2", 1, expandedIndex, () {
                     setState(() {
                       if (expandedIndex == 1) {
                         expandedIndex = -1;
@@ -99,11 +98,12 @@ class _PatientdispalyState extends State<Patientdispaly> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 170, bottom: 0),
+              padding: EdgeInsets.only(
+                  top: expandedIndex == -1 ? 435 : 135, bottom: 0),
               child: Button(),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 8),
+              padding: const EdgeInsets.only(top: 10, bottom: 20),
               child: SetupBtn(onPressed: moveSetup),
             ),
           ],

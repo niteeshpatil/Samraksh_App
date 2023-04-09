@@ -30,12 +30,12 @@ class _ButtonState extends State<Button> {
 
     _timer = Timer.periodic(Duration(seconds: 3), (timer) async {
       if (p_state1 == 2 && isconnected) {
-        await showNotification('Status',
-            'The patient $p_name1 in the $p_room1 room, appears that their body movements are exceeding the set limit.We recommend checking on the patient to ensure their well-being.');
+        await showNotification('Patient status',
+            'The patient, named $p_name1, is currently in room $p_room1, We recommend checking on the patient to ensure their well-being.');
       }
       if (p_state2 == 2 && isconnected) {
-        await showNotification('Status',
-            'The patient $p_name2 in the $p_room2 room, appears that their body movements are exceeding the set limit.We recommend checking on the patient to ensure their well-being.');
+        await showNotification('Patient status',
+            'The patient, named $p_name2, is currently in room $p_room2, We recommend checking on the patient to ensure their well-being.');
       }
     });
   }

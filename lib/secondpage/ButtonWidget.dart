@@ -16,24 +16,39 @@ class ButtonWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Center(
+        Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                blurRadius: 0,
+                spreadRadius: 0,
+                offset: const Offset(0, 2),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
+              // ignore: deprecated_member_use
+              primary: Colors.black,
               textStyle: const TextStyle(fontSize: 15),
               fixedSize: const Size(120, 40),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
             onPressed: isconnected ? onDisconnectPressed : onConnectPressed,
             child: Text(isconnected ? 'Disconnect' : 'Connect'),
           ),
         ),
-        const SizedBox(height: 2),
-        Text(isconnected
-            ? 'Disconnect to stop updates'
-            : 'Connect to get updates'),
+        const SizedBox(height: 10),
+        Text(
+          isconnected ? 'Disconnect to stop updates' : 'Connect to get updates',
+          style: TextStyle(
+            fontSize: 12,
+          ),
+        ),
       ],
     );
   }

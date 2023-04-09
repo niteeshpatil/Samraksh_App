@@ -101,7 +101,6 @@ class _SetupdetailesState extends State<Setupdetailes> {
       backgroundColor: Color.fromARGB(240, 102, 153, 204),
       appBar: AppBar(
         title: const Text('Samraksh'),
-        toolbarHeight: 35,
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         centerTitle: true,
         actions: <Widget>[
@@ -118,16 +117,10 @@ class _SetupdetailesState extends State<Setupdetailes> {
           ),
         ],
       ),
-      // appBar: AppBar(
-      //   title: const Text('Samraksh'),
-      //   toolbarHeight: 35,
-      //   backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-      //   centerTitle: true,
-      // ),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(50.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment:
                 MainAxisAlignment.center, // Center the children vertically
@@ -169,98 +162,138 @@ class _SetupdetailesState extends State<Setupdetailes> {
                       dropdownLimitValue = newValue;
                     });
                   }),
-              const SizedBox(height: 20.0),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    setState(() {
-                      isLoading = true;
-                    });
-                    String enteredPatientName = Patient_Name.text;
-                    String enteredPatientNo = Patient_NO.text;
-                    int? selectedDevice = device;
-                    double? selectedMode = Mode;
-                    double? selectedLimit = dropdownLimitValue;
-                    print('Name: $enteredPatientName');
-                    print('Room_No: $enteredPatientNo');
-                    print('Selected_Device: $selectedDevice');
-                    print('Selected_Mode: $selectedMode');
-                    print('Selected_limit: $selectedLimit');
-
-                    if (selectedLimit == null && selectedMode == null) {
-                      setState(() {
-                        _connectlimit();
-                      });
-                      return;
-                    }
-
-                    if (selectedDevice == 1) {
-                      p_name1 = enteredPatientName;
-                      p_room1 = enteredPatientNo;
-                      if (selectedMode != null) {
-                        p_limit1 = selectedMode;
-                      } else {
-                        p_limit1 = selectedLimit!;
-                      }
-                      msg = "$device $p_limit1";
-                    } else {
-                      p_name2 = enteredPatientName;
-                      p_room2 = enteredPatientNo;
-                      if (selectedMode != null) {
-                        p_limit2 = selectedMode;
-                      } else {
-                        p_limit2 = selectedLimit!;
-                      }
-                      msg = "$device $p_limit2";
-                    }
-
-                    print(msg);
-                    isconnected = false;
-                    await runpublish(msg);
-                    await runsubscribe(4);
-                    rundisconnect();
-
-                    setState(() {
-                      isLoading = false;
-                    });
-                    if ((device == 1 && device1isset == 1) ||
-                        (device == 2 && device2isset == 1)) {
-                      // ignore: use_build_context_synchronously
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Patientinfo()),
-                      );
-                    } else {
-                      _connecterror();
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    // ignore: deprecated_member_use
-                    primary: Colors.black,
-                    textStyle: const TextStyle(fontSize: 15),
-                    fixedSize:
-                        const Size(120, 40), // set the button width and height
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          12), // set the button border radius
-                    ),
+              const SizedBox(height: 25.0),
+              Column(children: [
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                        blurRadius: 0,
+                        spreadRadius: 0,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  child: isLoading
-                      // ignore: prefer_const_constructors
-                      ? SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: const CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Text('Submit'),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      String enteredPatientName = Patient_Name.text;
+                      String enteredPatientNo = Patient_NO.text;
+                      int? selectedDevice = device;
+                      double? selectedMode = Mode;
+                      double? selectedLimit = dropdownLimitValue;
+                      print('Name: $enteredPatientName');
+                      print('Room_No: $enteredPatientNo');
+                      print('Selected_Device: $selectedDevice');
+                      print('Selected_Mode: $selectedMode');
+                      print('Selected_limit: $selectedLimit');
+
+                      if (selectedLimit == null && selectedMode == null) {
+                        setState(() {
+                          _connectlimit();
+                        });
+                        return;
+                      }
+
+                      if (selectedDevice == 1) {
+                        p_name1 = enteredPatientName;
+                        p_room1 = enteredPatientNo;
+                        if (selectedMode != null) {
+                          p_limit1 = selectedMode;
+                        } else {
+                          p_limit1 = selectedLimit!;
+                        }
+                        msg = "$device $p_limit1";
+                      } else {
+                        p_name2 = enteredPatientName;
+                        p_room2 = enteredPatientNo;
+                        if (selectedMode != null) {
+                          p_limit2 = selectedMode;
+                        } else {
+                          p_limit2 = selectedLimit!;
+                        }
+                        msg = "$device $p_limit2";
+                      }
+
+                      print(msg);
+                      isconnected = false;
+                      await runpublish(msg);
+                      await runsubscribe(4);
+                      rundisconnect();
+
+                      setState(() {
+                        isLoading = false;
+                      });
+                      if ((device == 1 && device1isset == 1) ||
+                          (device == 2 && device2isset == 1)) {
+                        // ignore: use_build_context_synchronously
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Patientinfo()),
+                        );
+                      } else {
+                        _connecterror();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      // ignore: deprecated_member_use
+                      primary: Colors.black,
+                      textStyle: const TextStyle(fontSize: 15),
+                      fixedSize: const Size(
+                          120, 40), // set the button width and height
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            20), // set the button border radius
+                      ),
+                    ),
+                    child: isLoading
+                        // ignore: prefer_const_constructors
+                        ? SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: const CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text('Submit'),
+                  ),
                 ),
-              ),
-              if (isLoading) const Text('Connecting to ESP...'),
-              if (_connectionError) const Text('Make sure ESP is on!'),
-              if (_limitError) Text("Make sure Limit is selected!"),
-              const SizedBox(height: 20.0),
+              ]),
+              const SizedBox(height: 10.0),
+              if (isLoading)
+                const Text(
+                  'Connecting to ESP...',
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+              if (_connectionError)
+                const Text(
+                  'Make sure ESP is on!',
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+              if (_limitError)
+                const Text(
+                  "Make sure Limit is selected!",
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+              if (!isLoading && !_connectionError && !_limitError)
+                const Text(
+                  'Fill the details before submit',
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+              const SizedBox(height: 10.0),
               Center(child: Pdetailesbtn(onPressed: moveSetup)),
             ],
           ),

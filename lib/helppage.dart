@@ -43,15 +43,10 @@ class _NotesDialogState extends State<NotesDialog> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
       appBar: AppBar(
+        title: const Text('Help'),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-        title: const Text(
-          'Help',
-          style: TextStyle(
-            fontSize: 15.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ),
       body: ListView.builder(
         itemCount: notes.length,

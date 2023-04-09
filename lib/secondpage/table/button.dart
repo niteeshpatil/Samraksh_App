@@ -18,6 +18,10 @@ class ButtonExpand extends StatelessWidget {
           Expanded(
             child: Text(
               text,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold, // set the color property here
+                fontSize: 15,
+              ),
             ),
           ),
           IconButton(

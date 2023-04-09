@@ -19,7 +19,7 @@ Future<void> showNotification(String title, String body) async {
     'Samraksh',
     importance: Importance.max,
     priority: Priority.high,
-    showWhen: false,
+    showWhen: true,
   );
   const NotificationDetails platformChannelSpecifics =
       NotificationDetails(android: androidPlatformChannelSpecifics);
@@ -27,8 +27,19 @@ Future<void> showNotification(String title, String body) async {
     0,
     title,
     body,
-    platformChannelSpecifics,
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        'mngd_1234',
+        'Samraksh',
+        importance: Importance.max,
+        priority: Priority.high,
+        showWhen: true,
+        styleInformation: BigTextStyleInformation(
+          '',
+          contentTitle: title,
+        ),
+      ),
+    ),
     payload: 'item x',
   );
 }
-

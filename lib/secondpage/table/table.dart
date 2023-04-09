@@ -29,7 +29,7 @@ class _PatientDetailState extends State<PatientDetail> {
   void initState() {
     super.initState();
     device = widget._device + 1;
-    theading = "   Device ${device}";
+    theading = " Device-${device}";
 
     if (device == 1) {
       name = p_name1;
@@ -123,14 +123,18 @@ class _PatientDetailState extends State<PatientDetail> {
                             theading,
                             style: const TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
                             ),
                           ),
                         ),
                         const DataColumn(
                           label: Text(
-                            '   Details',
+                            'Details',
                             style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
                             ),
                           ),
                         ),
@@ -142,6 +146,7 @@ class _PatientDetailState extends State<PatientDetail> {
                               'Patient Name',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -150,6 +155,7 @@ class _PatientDetailState extends State<PatientDetail> {
                               name,
                               style: const TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -160,6 +166,7 @@ class _PatientDetailState extends State<PatientDetail> {
                               'Patient Room',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -168,6 +175,7 @@ class _PatientDetailState extends State<PatientDetail> {
                               room,
                               style: const TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -178,6 +186,7 @@ class _PatientDetailState extends State<PatientDetail> {
                               'Patient Status',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -197,6 +206,7 @@ class _PatientDetailState extends State<PatientDetail> {
                                       return Colors.white;
                                   }
                                 })(),
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           )
@@ -207,6 +217,7 @@ class _PatientDetailState extends State<PatientDetail> {
                               'Last Update',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -215,6 +226,7 @@ class _PatientDetailState extends State<PatientDetail> {
                               astime,
                               style: const TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -224,10 +236,7 @@ class _PatientDetailState extends State<PatientDetail> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
-                        textStyle: const TextStyle(
-                          fontSize: 12,
-                        ),
-                        fixedSize: const Size(70, 10),
+                        fixedSize: const Size(80, 10),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -236,7 +245,9 @@ class _PatientDetailState extends State<PatientDetail> {
                       child: const Text(
                         'Reset',
                         style: TextStyle(
-                          color: Colors.white, // set the color property here
+                          fontSize: 15,
+                          color: Colors.white,
+                          // set the color property here
                         ),
                       ),
                     ),
