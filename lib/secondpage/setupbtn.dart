@@ -11,11 +11,11 @@ class SetupBtn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          icon: Icon(Icons.arrow_forward),
+          icon: Icon(Icons.settings),
           onPressed: onPressed,
         ),
-        Text(
-          'Move to setup page',
+        const Text(
+          '',
           style: TextStyle(
             fontSize: 12,
           ),

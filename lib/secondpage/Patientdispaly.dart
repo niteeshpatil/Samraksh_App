@@ -39,14 +39,35 @@ class _PatientdispalyState extends State<Patientdispaly> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(240, 102, 153, 204),
+      backgroundColor: Color.fromARGB(255, 250, 213, 182),
       appBar: AppBar(
-        title: const Text('Patient Info'),
-        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+        title: Row(
+          children: const [
+            Text(
+              'Samraksh',
+              style: TextStyle(
+                color: Color.fromARGB(58, 255, 255, 255),
+              ),
+            ),
+            SizedBox(width: 45),
+            Text(
+              'Patient Info',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(224, 255, 255, 255),
+                fontSize: 15,
+              ),
+            ),
+          ],
+        ),
         centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.info),
+            icon: const Icon(
+              Icons.info,
+              color: Color.fromARGB(224, 255, 255, 255),
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -69,7 +90,7 @@ class _PatientdispalyState extends State<Patientdispaly> {
                   ButtonExpand("Device-1", 0, expandedIndex, () {
                     setState(() {
                       if (expandedIndex == 0) {
-                        expandedIndex = -1;
+                        expandedIndex = 1;
                       } else {
                         expandedIndex = 0;
                       }
@@ -87,7 +108,7 @@ class _PatientdispalyState extends State<Patientdispaly> {
                   ButtonExpand("Device-2", 1, expandedIndex, () {
                     setState(() {
                       if (expandedIndex == 1) {
-                        expandedIndex = -1;
+                        expandedIndex = 0;
                       } else {
                         expandedIndex = 1;
                       }

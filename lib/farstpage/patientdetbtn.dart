@@ -9,11 +9,11 @@ class Pdetailesbtn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.home_filled),
           onPressed: onPressed,
         ),
-        Text(
-          'Move to details page',
+        const Text(
+          '',
           style: TextStyle(
             fontSize: 12,
           ),

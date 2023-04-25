@@ -26,9 +26,10 @@ class _ButtonState extends State<Button> {
     isconnected = true;
     runsubscribe(-1);
     // Show a notification when connected
-    await showNotification('Connected', 'You are now connected to the ESP32.');
+    await showNotification(
+        'Connected', 'You are now connected,To Stop Updates press Disconnect');
 
-    _timer = Timer.periodic(Duration(seconds: 3), (timer) async {
+    _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
       if (p_state1 == 2 && isconnected) {
         await showNotification('Patient status',
             'The patient, named $p_name1, is currently in room $p_room1, We recommend checking on the patient to ensure their well-being.');
@@ -48,8 +49,8 @@ class _ButtonState extends State<Button> {
     rundisconnect();
 
     // Show a notification when disconnected
-    await showNotification(
-        'Disconnected', 'You have been disconnected from  ESP32.');
+    await showNotification('Disconnected',
+        'You have been disconnected,To Get Updates press Connect');
   }
 
   @override

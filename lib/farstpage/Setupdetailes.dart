@@ -98,14 +98,35 @@ class _SetupdetailesState extends State<Setupdetailes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(240, 102, 153, 204),
+      backgroundColor: Color.fromARGB(255, 250, 213, 182),
       appBar: AppBar(
-        title: const Text('Samraksh'),
-        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+        title: Row(
+          children: const [
+            Text(
+              'Samraksh',
+              style: TextStyle(
+                color: Color.fromARGB(58, 255, 255, 255),
+              ),
+            ),
+            SizedBox(width: 60),
+            Text(
+              'Setup',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(224, 255, 255, 255),
+                fontSize: 15,
+              ),
+            ),
+          ],
+        ),
         centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.info),
+            icon: const Icon(
+              Icons.info,
+              color: Color.fromARGB(224, 255, 255, 255),
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -281,14 +302,14 @@ class _SetupdetailesState extends State<Setupdetailes> {
                 ),
               if (_limitError)
                 const Text(
-                  "Make sure Limit is selected!",
+                  "Make sure Limit or mode is selected!",
                   style: TextStyle(
                     fontSize: 12,
                   ),
                 ),
               if (!isLoading && !_connectionError && !_limitError)
                 const Text(
-                  'Fill the details before submit',
+                  '',
                   style: TextStyle(
                     fontSize: 12,
                   ),

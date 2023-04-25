@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
+FlutterTts flutterTts = FlutterTts();
 
 Future<void> initNotifications() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
@@ -42,4 +44,8 @@ Future<void> showNotification(String title, String body) async {
     ),
     payload: 'item x',
   );
+
+  await flutterTts.setLanguage('en-US');
+  await flutterTts.setSpeechRate(0.5);
+  await flutterTts.speak(body);
 }

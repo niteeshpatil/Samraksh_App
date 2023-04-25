@@ -99,16 +99,17 @@ class _PatientDetailState extends State<PatientDetail> {
         ? Center(
             child: DataTableTheme(
               data: DataTableThemeData(
-                dataRowColor: MaterialStateProperty.all<Color>(Colors.white),
+                dataRowColor: MaterialStateProperty.all<Color>(
+                    Color.fromARGB(255, 255, 255, 255)),
                 dataTextStyle: const TextStyle(
                   color: Colors.black,
                 ),
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: Color.fromARGB(255, 0, 0, 0),
                   border: Border.all(
-                    color: const Color.fromARGB(255, 1, 0, 0),
+                    color: const Color.fromARGB(210, 59, 29, 5),
                     width: 2.0,
                     style: BorderStyle.solid,
                   ),
@@ -197,7 +198,7 @@ class _PatientDetailState extends State<PatientDetail> {
                                 color: (() {
                                   switch (status) {
                                     case 'Unknown':
-                                      return Colors.orange;
+                                      return Colors.blue;
                                     case 'Stable':
                                       return Colors.green;
                                     case 'Unstable':
@@ -235,7 +236,7 @@ class _PatientDetailState extends State<PatientDetail> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                        backgroundColor: Color.fromARGB(255, 0, 0, 0),
                         fixedSize: const Size(80, 10),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),

@@ -44,7 +44,7 @@ class ButtonWidget extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          isconnected ? 'Disconnect to stop updates' : 'Connect to get updates',
+          isconnected ? '' : '',
           style: TextStyle(
             fontSize: 12,
           ),

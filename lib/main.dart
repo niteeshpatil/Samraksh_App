@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'secondpage/Patientinfopage.dart';
-import './globledata.dart';
+import './Welcomescreen.dart';
 
 void main() {
-  runApp(Patientinfo());
+  Future.delayed(const Duration(seconds: 8), () {
+    runApp(Patientinfo());
+  });
+  runApp(const Welcomescreen());
 }

@@ -10,12 +10,6 @@ class NotesDialog extends StatefulWidget {
 class _NotesDialogState extends State<NotesDialog> {
   final List<Map<String, dynamic>> notes = [
     {
-      'title': 'Device',
-      'content': [
-        'We are supporting two devices, See the Device Number on ESPs, and select the proper device which is connecting to the patient from drop-down.'
-      ]
-    },
-    {
       'title': 'Start',
       'content': [
         'Make sure that ESP is on, Connected to Wifi, and running in Boot Mode (No previous limit is set, if it is set Reset ESP).',
@@ -23,10 +17,22 @@ class _NotesDialogState extends State<NotesDialog> {
       ]
     },
     {
+      'title': 'Device',
+      'content': [
+        'We are supporting two devices, See the Device Number on ESPs, and select the proper device which is connecting to the patient from drop-down.'
+      ]
+    },
+    {
       'title': 'Submit',
       'content': [
         'The button will load for 4 minutes for ack from the selected device.',
         'After loading If not move to the patinetinfo page then the limit Setting has not happened, Try to Submit again make sure that esp is connected to wifi and is in Boot Mode.',
+      ]
+    },
+    {
+      'title': 'Updates',
+      'content': [
+        'To Get Updates on Patient Movements Press Connect Button, to Stop Updates press Disconnect Button in Patient info page',
       ]
     },
     {
@@ -43,9 +49,9 @@ class _NotesDialogState extends State<NotesDialog> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        title: const Text('Help'),
+        title: const Text('Help', style: TextStyle(fontSize: 15)),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       ),
       body: ListView.builder(
@@ -66,6 +72,7 @@ class _NotesDialogState extends State<NotesDialog> {
                       note['title'],
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 0, 0, 0),
                         fontSize: 18,
                       ),
                     ),
@@ -85,7 +92,7 @@ class _NotesDialogState extends State<NotesDialog> {
                         child: Text(
                           '\u2605 ',
                           style: TextStyle(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).unselectedWidgetColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
@@ -94,7 +101,11 @@ class _NotesDialogState extends State<NotesDialog> {
                       Expanded(
                         child: Text(
                           content,
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Baskervville',
+                              color: Color.fromARGB(194, 0, 0, 0)),
                           textAlign: TextAlign.justify,
                         ),
                       ),
