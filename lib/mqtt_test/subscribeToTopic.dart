@@ -10,6 +10,7 @@ import 'package:mqtt_client/mqtt_client.dart'
         MqttReceivedMessage;
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:intl/intl.dart';
+import '../notification/notifi_service.dart';
 
 Future<void> subscribeToTopic(MqttServerClient client, String topic) async {
   print('Subscribing to the $topic topic');
@@ -31,12 +32,20 @@ Future<void> subscribeToTopic(MqttServerClient client, String topic) async {
         p_state1 = curstate;
         last_update1 =
             DateFormat(' hh:mm:ss a dd/MM/yy').format(DateTime.now());
+        if (curstate == 2 && connected) {
+          showNotification('Patient status',
+              'The patient, named $p_name1, is currently in room $p_room1, We recommend checking on the patient to ensure their well-being.');
+        }
       }
       if (curdevice == 2) {
         device2isset = curdset;
         p_state2 = curstate;
         last_update2 =
             DateFormat(' hh:mm:ss a dd/MM/yy').format(DateTime.now());
+        if (curstate == 2 && connected) {
+          showNotification('Patient status',
+              'The patient, named $p_name2, is currently in room $p_room2, We recommend checking on the patient to ensure their well-being.');
+        }
       }
       if (device1isset == 1 || device2isset == 1) {
         isset = 1;

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import './globledata.dart';
 
 class Welcomescreen extends StatelessWidget {
   const Welcomescreen({super.key});
@@ -28,7 +29,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
-
+    loadGlobalData();
     Future.delayed(const Duration(milliseconds: 0), () {
       setState(() {
         _isinitdelay = true;
@@ -121,7 +122,7 @@ class _WelcomePageState extends State<WelcomePage> {
               child: Image.asset(
                 'assets/images/app_logo.png',
                 height: 100.0,
-                width: 100.0,
+                width: 200.0,
               ),
             ),
           ],

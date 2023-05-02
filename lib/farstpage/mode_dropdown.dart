@@ -58,7 +58,7 @@ class ModeDropdown extends StatelessWidget {
                   )),
                 ),
                 const DropdownMenuItem<double>(
-                  value: 5.0,
+                  value: 1,
                   child: Center(
                       child: Text(
                     'Accident Patient',
@@ -69,7 +69,7 @@ class ModeDropdown extends StatelessWidget {
                   )),
                 ),
                 const DropdownMenuItem<double>(
-                  value: 20.0,
+                  value: 7.0,
                   child: Center(
                       child: Text(
                     'Pregnant Women',

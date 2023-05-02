@@ -92,7 +92,25 @@ class _SetupdetailesState extends State<Setupdetailes> {
 
   void moveSetup() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Patientinfo()));
+      context,
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 1000),
+        pageBuilder: (context, animation, secondaryAnimation) => Patientinfo(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var begin = Offset(0.0, 0.0);
+          var end = Offset.zero;
+          var curve = Curves.ease;
+
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+      ),
+    );
   }
 
   @override
@@ -108,7 +126,7 @@ class _SetupdetailesState extends State<Setupdetailes> {
                 color: Color.fromARGB(58, 255, 255, 255),
               ),
             ),
-            SizedBox(width: 60),
+            SizedBox(width: 70),
             Text(
               'Setup',
               style: TextStyle(

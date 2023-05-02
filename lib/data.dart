@@ -22,3 +22,5 @@ double p_limit2 = 100;
 
 int device1isset = 0;
 int device2isset = 0;
+
+bool connected = false;

@@ -7,6 +7,9 @@ class LimitDropdown extends StatelessWidget {
   LimitDropdown({required this.value, required this.onChanged});
 
   final List<double> _items = [
+    0.25,
+    0.5,
+    0.75,
     1,
     1.5,
     2,
@@ -14,16 +17,12 @@ class LimitDropdown extends StatelessWidget {
     3,
     3.5,
     4,
-    5,
     6,
-    7,
     8,
     10,
     15,
     20,
-    25,
-    30,
-    35
+    30
   ];
 
   @override

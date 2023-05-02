@@ -46,6 +46,7 @@ Future<void> showNotification(String title, String body) async {
   );
 
   await flutterTts.setLanguage('en-US');
-  await flutterTts.setSpeechRate(0.5);
+  await flutterTts.setSpeechRate(0.6);
+  await flutterTts.awaitSpeakCompletion(true);
   await flutterTts.speak(body);
 }

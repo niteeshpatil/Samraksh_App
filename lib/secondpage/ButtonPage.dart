@@ -13,7 +13,7 @@ class Button extends StatefulWidget {
 }
 
 class _ButtonState extends State<Button> {
-  Timer? _timer;
+  // Timer? _timer;
 
   @override
   void initState() {
@@ -24,28 +24,30 @@ class _ButtonState extends State<Button> {
   void _connect() async {
     connect(setState);
     isconnected = true;
+    connected = true;
     runsubscribe(-1);
     // Show a notification when connected
     await showNotification(
         'Connected', 'You are now connected,To Stop Updates press Disconnect');
 
-    _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
-      if (p_state1 == 2 && isconnected) {
-        await showNotification('Patient status',
-            'The patient, named $p_name1, is currently in room $p_room1, We recommend checking on the patient to ensure their well-being.');
-      }
-      if (p_state2 == 2 && isconnected) {
-        await showNotification('Patient status',
-            'The patient, named $p_name2, is currently in room $p_room2, We recommend checking on the patient to ensure their well-being.');
-      }
-    });
+    // _timer = Timer.periodic(Duration(seconds: 1), (timer) async {
+    //   if (p_state1 == 2 && isconnected) {
+    //     await showNotification('Patient status',
+    //         'The patient, named $p_name1, is currently in room $p_room1, We recommend checking on the patient to ensure their well-being.');
+    //   }
+    //   if (p_state2 == 2 && isconnected) {
+    //     await showNotification('Patient status',
+    //         'The patient, named $p_name2, is currently in room $p_room2, We recommend checking on the patient to ensure their well-being.');
+    //   }
+    // });
   }
 
   void _disconnect() async {
     disconnect(setState);
     // Cancel the timer
-    _timer?.cancel();
+    // _timer?.cancel();
     isconnected = false;
+    connected = false;
     rundisconnect();
 
     // Show a notification when disconnected
