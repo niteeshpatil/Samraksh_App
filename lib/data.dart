@@ -24,3 +24,5 @@ int device1isset = 0;
 int device2isset = 0;
 
 bool connected = false;
+
+int mobile_id = 0;

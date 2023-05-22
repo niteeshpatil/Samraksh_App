@@ -80,7 +80,7 @@ class ModeDropdown extends StatelessWidget {
                   )),
                 ),
                 const DropdownMenuItem<double>(
-                  value: 0.25,
+                  value: 0.35,
                   child: Center(
                       child: Text(
                     'Coma Patient',

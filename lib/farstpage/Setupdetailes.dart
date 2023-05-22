@@ -13,6 +13,7 @@ import '../setupfunctions/disconnect.dart';
 import './device.dart';
 import './patientdetbtn.dart';
 import '../helppage.dart';
+import 'dart:math';
 
 class Setupdetailes extends StatefulWidget {
   const Setupdetailes({super.key});
@@ -220,6 +221,12 @@ class _SetupdetailesState extends State<Setupdetailes> {
                       setState(() {
                         isLoading = true;
                       });
+                      if (mobile_id == 0) {
+                        var rng = Random();
+                        var code = rng.nextInt(9000) + 1000;
+                        mobile_id = code;
+                      }
+                      print("Mobile_id: $mobile_id");
                       String enteredPatientName = Patient_Name.text;
                       String enteredPatientNo = Patient_NO.text;
                       int? selectedDevice = device;
@@ -246,7 +253,7 @@ class _SetupdetailesState extends State<Setupdetailes> {
                         } else {
                           p_limit1 = selectedLimit!;
                         }
-                        msg = "$device $p_limit1";
+                        msg = "$device $p_limit1 $mobile_id";
                       } else {
                         p_name2 = enteredPatientName;
                         p_room2 = enteredPatientNo;
@@ -255,7 +262,7 @@ class _SetupdetailesState extends State<Setupdetailes> {
                         } else {
                           p_limit2 = selectedLimit!;
                         }
-                        msg = "$device $p_limit2";
+                        msg = "$device $p_limit2 $mobile_id";
                       }
 
                       print(msg);

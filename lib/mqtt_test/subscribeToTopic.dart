@@ -27,27 +27,29 @@ Future<void> subscribeToTopic(MqttServerClient client, String topic) async {
       int curdevice = int.parse(data[0]);
       int curdset = int.parse(data[1]);
       int curstate = int.parse(data[2]);
-      if (curdevice == 1) {
+      int curmobile_id = int.parse(data.substring(data.length - 4));
+      if (curdevice == 1 && curmobile_id == mobile_id) {
         device1isset = curdset;
         p_state1 = curstate;
         last_update1 =
             DateFormat(' hh:mm:ss a dd/MM/yy').format(DateTime.now());
         if (curstate == 2 && connected) {
-          showNotification('Patient status',
+          showNotification('Patient status (Device-1)',
               'The patient, named $p_name1, is currently in room $p_room1, We recommend checking on the patient to ensure their well-being.');
         }
       }
-      if (curdevice == 2) {
+      if (curdevice == 2 && curmobile_id == mobile_id) {
         device2isset = curdset;
         p_state2 = curstate;
         last_update2 =
             DateFormat(' hh:mm:ss a dd/MM/yy').format(DateTime.now());
         if (curstate == 2 && connected) {
-          showNotification('Patient status',
+          showNotification('Patient status (Device-2)',
               'The patient, named $p_name2, is currently in room $p_room2, We recommend checking on the patient to ensure their well-being.');
         }
       }
-      if (device1isset == 1 || device2isset == 1) {
+      if ((device1isset == 1 || device2isset == 1) &&
+          curmobile_id == mobile_id) {
         isset = 1;
       } else {
         isset = 0;

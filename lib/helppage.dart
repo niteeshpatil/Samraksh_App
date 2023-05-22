@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './data.dart';
 
 class NotesDialog extends StatefulWidget {
   const NotesDialog({Key? key}) : super(key: key);
@@ -44,6 +45,12 @@ class _NotesDialogState extends State<NotesDialog> {
     {
       'title': 'Reset ESP (Boot Mode)',
       'content': ['Press the Boot button on esp which will erase limit.']
+    },
+    {
+      'title': 'Mobile_ID',
+      'content': [
+        'Mobile_ID ($mobile_id) is used to identify the mobile,from which limit is set on device.'
+      ]
     },
   ];
 

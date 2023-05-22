@@ -52,6 +52,7 @@ import 'data.dart';
 Future<void> saveGlobalData() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setInt('isset', isset);
+  await prefs.setInt('mobile_id', mobile_id);
 
   await prefs.setInt('device1_isset', device1isset);
   await prefs.setInt('patient1_state', p_state1);
@@ -78,6 +79,7 @@ Future<void> saveDataBeforeAppClose() async {
 void loadGlobalData() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isset = prefs.getInt('isset') ?? 0;
+  mobile_id = prefs.getInt('mobile_id') ?? 0;
 
   device1isset = prefs.getInt('device1_isset') ?? 0;
   p_state1 = prefs.getInt('patient1_state') ?? 0;
@@ -106,6 +108,7 @@ void loadDataWhenAppStarts() {
 void printLoadedData() {
   print('Loaded global data:');
   print('isset: $isset');
+  print('mobile_id: $mobile_id');
 
   print('global data of patient 1:');
   print('device1_isset: $device1isset');
@@ -142,6 +145,7 @@ void resetgobledata(int device) {
   }
   if (device1isset == 0 && device2isset == 0) {
     isset = 0;
+    mobile_id = 0;
   }
   saveGlobalData();
 }
