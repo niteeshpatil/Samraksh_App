@@ -1,16 +1,21 @@
-# app
+## Samraksh
 
-A new Flutter project.
+-  This gadget aids hospital workers in remotely and continuously tracking patient body part movements and alerting with voice notification via mobile,developed a device and an app utilising the mqtt, c++, flutter.
 
-## Getting Started
+# Setting up of details
+![image](https://github.com/niteeshpatil/Samraksh_App/assets/88622611/76228b69-0306-4bb1-8877-fa69bc9bd0e0)   ![image](https://github.com/niteeshpatil/Samraksh_App/assets/88622611/f7a13e06-7cc4-480a-8cee-ab05e4561ec6)
 
-This project is a starting point for a Flutter application.
+# Continues display of patient status
+![image](https://github.com/niteeshpatil/Samraksh_App/assets/88622611/e7d2a090-e814-4609-9acd-599bd0495a7e)   ![image](https://github.com/niteeshpatil/Samraksh_App/assets/88622611/b19dd347-8f13-429b-9020-a564400b8d40)
 
-A few resources to get you started if this is your first Flutter project:
+# Voice notification when the condition of a patient is unstable
+![image](https://github.com/niteeshpatil/Samraksh_App/assets/88622611/d56ee5c2-2305-44b2-9a55-f9c6cf37e6b2)   ![image](https://github.com/niteeshpatil/Samraksh_App/assets/88622611/63a187a3-b494-4754-af02-55e1baa2b77c)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
+
+
+
+
