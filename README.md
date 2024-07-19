@@ -1,7 +1,7 @@
 # Samraksh
  - To develop a system that helps hospital staff to remotely and continuously monitor the patient movement of certain body parts which may cause prolonged hospitalization or any other consequences.
  - To develop a mobile application that notifies the hospital staff if the patient moves beyond the restricted limit.
- - [Gadget  Source Code](https://github.com/niteeshpatil/Samraksh_esp32/blob/master/pre/maindevice1/maincode/maincode.ino)
+ - [Gadget  Source Code](https://github.com/niteeshpatil/Samraksh_esp32)
  - [App](https://drive.google.com/file/d/1dcjMc_Unolv2UKmhO6vgI3iug80L56q3/view?usp=sharing)
 
 
