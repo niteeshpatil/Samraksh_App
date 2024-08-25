@@ -20,8 +20,8 @@ Skills: Android, Data Structures ,Algorithms, C++, IoT, Flutter
 # Process
 <div align="center">
 <div>--</div>
-
 <img width="70%" width="1813" alt="METH" src="https://github.com/niteeshpatil/Samraksh_esp32/assets/88622611/acb1fffd-b4e1-496c-8608-2b1b28bd65c3">
+<div>--</div>
 
 ### Setting up of details
 <div>--</div>
